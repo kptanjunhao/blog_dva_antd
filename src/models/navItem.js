@@ -7,7 +7,8 @@ export default {
   namespace: 'navItem',
 
   state: {
-    current: ["主页"],
+    item: [],
+    current: ""
   },
 
   // subscriptions: {
@@ -22,8 +23,8 @@ export default {
   // },
 
   reducers: {
-    update(state, { payload: items } ){
-      return { current: items };
+    update(state, { payload: items,current: current } ){
+      return { item: state.item.concat(items), current: current };
     }
   },
 

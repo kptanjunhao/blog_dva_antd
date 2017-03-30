@@ -5,7 +5,6 @@ import CountApp from '../components/CountApp';
 import Nav from '../components/Nav';
 
 const IndexPage = () => {
-
   return (
     <div>
       <Affix>
