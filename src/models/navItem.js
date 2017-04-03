@@ -7,7 +7,7 @@ export default {
   namespace: 'navItem',
 
   state: {
-    item: [],
+    item: ["主页","播放器"],
     current: ""
   },
 
@@ -24,7 +24,7 @@ export default {
 
   reducers: {
     update(state, { payload: items,current: current } ){
-      return { item: state.item.concat(items), current: current };
+      return { item: ["主页"].concat(items).concat(["播放器"]), current: current };
     }
   },
 

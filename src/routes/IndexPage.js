@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { Affix } from 'antd';
 import CountApp from '../components/CountApp';
 import Nav from '../components/Nav';
+import Player from '../components/MusicPlayer';
 
 const IndexPage = () => {
   return (
@@ -13,6 +14,7 @@ const IndexPage = () => {
       </Affix>
       <h1>Welcome to dva!</h1>
       <CountApp/>
+      <Player/>
     </div>
   );
 }

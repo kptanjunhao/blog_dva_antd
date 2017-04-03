@@ -13,6 +13,9 @@ const Nav = ({navItem, dispatch}) => {
   if (navItem.item.length < 1) {
     var result = request("http://localhost:8080/test").then(
       ({data})=>{
+        if(data==null){
+          return;
+        }
         console.log(data.data);
         dispatch({
           type: 'navItem/update',
