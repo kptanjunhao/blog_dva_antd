@@ -9,7 +9,6 @@ const IndexPage = () => {
     <div>
       <Affix>
         <Nav/>
-        <h1>Hello World</h1>
       </Affix>
       <h1>Welcome to dva!</h1>
       <Player/>

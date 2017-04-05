@@ -13,24 +13,24 @@ class Nav extends React.Component{
     super()
     this.state = {
       items:["主页"],
+      artCates:[],
       current:"主页",
     };
     this.handleClick = this.handleClick.bind(this);
   }
-  componentDidMount(){
-    if (this.state == 1) {
-      var result = request("http://localhost:8080/test").then(
-        ({data})=>{
-          if(data==null){
-            return;
-          }
-          console.log(data.data);
-          this.setState({
-            items:["主页","文章"],
-            current:this.state.current,
-          })
-        });
-    }
+  componentDidMount() {
+    var result = request("http://localhost:8080/test").then(
+      ({data}) => {
+        if (data == null) {
+          return;
+        }
+        console.log(data.data)
+        this.setState({
+          items: this.state.items.concat(["文章列表"]),
+          artCates: data.data,
+          current: this.state.current,
+        })
+      });
   }
   handleClick(e){
     this.setState({
@@ -40,11 +40,25 @@ class Nav extends React.Component{
   getItems(){
     var navItems = [];
     for(var i=0;i<this.state.items.length;i++){
-      navItems.push(
-        <Menu.Item key={ this.state.items[i] }>
-          <Icon type="app" />{this.state.items[i]}
-        </Menu.Item>
-      );
+      if(this.state.items[i] == "文章列表"){
+        var subItems = []
+        for(var j=0;i<this.state.artCates.length;j++){
+          subItems.push(
+            <Menu.Item>{ this.state.artCates[j] }</Menu.Item>
+          );
+        }
+        navItems.push(
+          <SubMenu title={this.state.items[i]}>
+            { subItems }
+          </SubMenu>
+        );
+      }else {
+        navItems.push(
+          <Menu.Item key={ this.state.items[i] }>
+            <Icon type="app"/>{this.state.items[i]}
+          </Menu.Item>
+        );
+      }
     }
     return navItems;
   }
