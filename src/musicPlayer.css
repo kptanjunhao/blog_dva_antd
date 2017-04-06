@@ -1,0 +1,20 @@
+.player_affix_hide {
+  position: fixed;
+  right: 0;
+  bottom: -351px;
+  transition: bottom 300ms ease-in;
+}
+
+.player_affix_list_show {
+  position: fixed;
+  right: 0;
+  bottom: -5px;
+  transition: bottom 300ms ease-in;
+}
+
+.player_affix_list_hide {
+  position: fixed;
+  right: 0;
+  bottom: -231px;
+  transition: bottom 300ms ease-in;
+}

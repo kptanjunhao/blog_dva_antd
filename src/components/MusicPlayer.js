@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Affix , Button } from 'antd';
+import style from '../musicPlayer.css';
 
 const customPanelStyle = {
   background: '#f7f7f7',
@@ -49,15 +50,15 @@ class Player extends React.Component {
   }
 
   render() {
-    var bottom = (this.state.isShowList ? -5 : -231);
-    bottom = this.state.isExpand ? bottom : -351;
+    var playerStyle = (this.state.isShowList ? style.player_affix_list_show : style.player_affix_list_hide);
+    playerStyle = this.state.isExpand ? playerStyle : style.player_affix_hide;
     return (
-      <Affix style={{ position: 'fixed', right: 0, bottom: bottom }}>
-        { this.getButton() }
-        <embed
-          src="http://www.xiami.com/widget/283751486_3381901,1770692721,374039,2072395,3381910,374040,3381909,3599312,1772446369,1770665107,1770692726,3381907,2072394,_235_346_FF8719_494949_0/multiPlayer.swf"
-          type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"></embed>
-      </Affix>
+        <Affix className={playerStyle}>
+          { this.getButton() }
+          <embed
+            src="http://www.xiami.com/widget/283751486_3381901,1770692721,374039,2072395,3381910,374040,3381909,3599312,1772446369,1770665107,1770692726,3381907,2072394,_235_346_FF8719_494949_0/multiPlayer.swf"
+            type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"></embed>
+        </Affix>
     );
   }
 };

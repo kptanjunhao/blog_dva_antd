@@ -10,45 +10,43 @@ const MenuItemGroup = Menu.ItemGroup;
 
 class Nav extends React.Component{
   constructor(){
-    super()
+    super();
     this.state = {
-      items:["主页"],
-      artCates:[],
+      items:["主页","文章列表","关于"],
+      artCates:["暂无数据"],
       current:"主页",
     };
     this.handleClick = this.handleClick.bind(this);
-  }
-  componentDidMount() {
-    var result = request("http://localhost:8080/test").then(
+
+    request("http://localhost:8080/test").then(
       ({data}) => {
         if (data == null) {
           return;
         }
-        console.log(data.data)
+        console.log(data.data);
         this.setState({
-          items: this.state.items.concat(["文章列表"]),
-          artCates: data.data,
-          current: this.state.current,
-        })
+          artCates: data.data
+        });
       });
   }
   handleClick(e){
     this.setState({
       current:e.key
-    })
+    });
+    this.props.handleClick(e.key);
   }
   getItems(){
     var navItems = [];
     for(var i=0;i<this.state.items.length;i++){
       if(this.state.items[i] == "文章列表"){
         var subItems = []
-        for(var j=0;i<this.state.artCates.length;j++){
+        for(var j=0;j<this.state.artCates.length;j++){
           subItems.push(
-            <Menu.Item>{ this.state.artCates[j] }</Menu.Item>
+            <Menu.Item key={"文章列表:"+j}>{ this.state.artCates[j] }</Menu.Item>
           );
         }
         navItems.push(
-          <SubMenu title={this.state.items[i]}>
+          <SubMenu title={this.state.items[i]} key="文章列表">
             { subItems }
           </SubMenu>
         );
