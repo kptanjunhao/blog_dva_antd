@@ -8,7 +8,8 @@ const app = dva();
 // app.use({});
 
 // 3. Model
-// app.model(require('./models/count'));
+app.model(require('./models/category'));
+app.model(require('./models/nav'));
 
 // 4. Router
 app.router(require('./router'));
