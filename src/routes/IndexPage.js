@@ -3,7 +3,7 @@ import { connect } from 'dva';
 import { Affix } from 'antd';
 import Nav from '../components/Nav';
 import Player from '../components/MusicPlayer';
-
+import request from '../utils/request';
 
 const IndexPage = (state) => {
   let handleClick = (key) => {
@@ -11,9 +11,17 @@ const IndexPage = (state) => {
 
     }else if(key=="关于"){
 
-    }else if(key.indexOf("文章列表")>=0){
+    }else if(key.indexOf("文章")>=0){
       let strs = key.split(":");
       let index = strs[strs.length-1];
+      request("http://localhost:8080/getArticlesByCategoryId?cid="+state.nav.artCates[index].category_id).then(
+        ({data}) => {
+          var artDatas = data.data
+          console.log(artDatas);
+          if (data == undefined) {
+            artDatas = [];
+          }
+        });
     }
   };
   return (

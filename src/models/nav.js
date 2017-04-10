@@ -6,7 +6,7 @@ export default {
   namespace: 'nav',
 
   state: {
-    items:["主页","文章列表","关于"],
+    items:["主页","文章","关于"],
     artCates:[],
     current:"主页",
   },

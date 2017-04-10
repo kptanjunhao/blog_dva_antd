@@ -21,12 +21,15 @@ const Nav = ({ nav, indexHandleClick, dispatch }) => {
   };
 
   if(nav.artCates == undefined||nav.artCates.length == 0){
-    request("http://localhost:8080/getCategories").then(
+    request("http://localhost:8080/getAllCategories").then(
       ({data}) => {
         var artCates = data.data
         console.log(artCates);
         if (data == undefined) {
-          artCates = ["暂无数据"]
+          artCates = [{
+            category_id:-1,
+            name:"暂无数据"
+          }]
         }
         dispatch({
           type: 'nav/update',
@@ -41,15 +44,15 @@ const Nav = ({ nav, indexHandleClick, dispatch }) => {
   var getItems = () => {
     var navItems = [];
     for(var i=0;i<nav.items.length;i++){
-      if(nav.items[i] == "文章列表"){
+      if(nav.items[i] == "文章"){
         var subItems = []
         for(var j=0;j<nav.artCates.length;j++){
           subItems.push(
-            <Menu.Item key={"文章列表:"+j}>{ nav.artCates[j] }</Menu.Item>
+            <Menu.Item key={"文章:"+j}>{ nav.artCates[j].name }</Menu.Item>
           );
         }
         navItems.push(
-          <SubMenu title={nav.items[i]} key="文章列表">
+          <SubMenu title={nav.items[i]} key="文章">
             { subItems }
           </SubMenu>
         );
