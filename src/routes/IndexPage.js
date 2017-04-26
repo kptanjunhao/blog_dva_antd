@@ -23,7 +23,13 @@ const IndexPage = (state) => {
           }
         });
     }
+    console.log(state.nav.current);
   };
+
+  let getContent = () => {
+
+  };
+
   return (
     <div>
       <Affix>
@@ -43,6 +49,5 @@ function mapStateToProps(state) {
     nav: state.nav
   };
 }
-// const NavBar = connect(mapStateToProps)(Nav);
 
 export default connect(mapStateToProps)(IndexPage);
