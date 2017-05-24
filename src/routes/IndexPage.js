@@ -3,12 +3,13 @@ import { connect } from 'dva';
 import { Affix } from 'antd';
 import Nav from '../components/Nav';
 import Player from '../components/MusicPlayer';
+import ContentBox from '../components/ContentBox';
 import request from '../utils/request';
 
 const IndexPage = (state) => {
   let handleClick = (key) => {
     if(key=="主页"){
-
+      window.location.href="/";
     }else if(key=="关于"){
 
     }else if(key.indexOf("文章")>=0){
@@ -16,26 +17,24 @@ const IndexPage = (state) => {
       let index = strs[strs.length-1];
       request("http://localhost:8080/getArticlesByCategoryId?cid="+state.nav.artCates[index].category_id).then(
         ({data}) => {
-          var artDatas = data.data
-          console.log(artDatas);
-          if (data == undefined) {
-            artDatas = [];
-          }
+          state.dispatch({
+            type: 'articles/update',
+            payload: {
+              items: data.data,
+            },
+          });
         });
     }
     console.log(state.nav.current);
   };
 
-  let getContent = () => {
-
-  };
 
   return (
     <div>
       <Affix>
         <Nav indexHandleClick={handleClick} nav={state.nav} dispatch={state.dispatch}/>
       </Affix>
-      <h1>Welcome to dva!</h1>
+      <ContentBox artArr={ state.articles.items }/>
       <Player/>
     </div>
   );
@@ -46,7 +45,8 @@ IndexPage.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    nav: state.nav
+    nav: state.nav,
+    articles: state.articles,
   };
 }
 

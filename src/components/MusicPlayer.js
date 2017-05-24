@@ -55,7 +55,7 @@ class Player extends React.Component {
     return (
         <Affix className={playerStyle}>
           { this.getButton() }
-          <embed src="http://www.xiami.com/widget/283751486_3381901,1770692721,374039,2072395,3381910,374040,3381909,3599312,1772446369,1770665107,1770692726,3381907,2072394,_235_346_FF8719_494949_0/multiPlayer.swf"
+          <embed src="http://www.xiami.com/widget/283751486_3381901,1770326397,1774917404,2112850,1770692721,374039,2072395,3381910,374040,3381909,3599312,1772446369,1770665107,1770692726,3381907,2072394,_235_346_FF8719_494949_0/multiPlayer.swf"
   type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"/>
         </Affix>
     );
